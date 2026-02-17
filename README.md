@@ -1,16 +1,18 @@
-## Hi there 👋
+# Developer Portfolio
 
-<!--
-**fuhoang/fuhoang** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Personal portfolio website built with Next.js.
 
-Here are some ideas to get you started:
+## Development
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000` to view the site.
+
+## Lint
+
+```bash
+npm run lint
+```
