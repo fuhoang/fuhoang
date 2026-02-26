@@ -8,8 +8,8 @@ export function Contact() {
       <PosterLine text="DISCOVERY • SCOPE • EXECUTE • SHIP" />
       <SectionShell id="contact" eyebrow="Contact" title="Let’s talk">
         <div className="grid gap-6 md:grid-cols-12">
-          <Reveal>
-            <div className="md:col-span-6">
+          <div className="md:col-span-6">
+            <Reveal>
               <p className="text-muted">
                 Share your stack, goals, and timeline. I typically respond
                 within 24 hours.
@@ -28,11 +28,12 @@ export function Contact() {
                   </a>
                 </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
 
-          <Reveal>
-            <div className="md:col-span-6 rounded-xl border border-panel bg-surface/30 p-6">
+          <div className="md:col-span-6">
+            <Reveal>
+              <div className="rounded-xl border border-panel bg-surface/30 p-6">
               <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
                 What to include
               </div>
@@ -42,8 +43,9 @@ export function Contact() {
                 <li>• Timeline</li>
                 <li>• Where you need support</li>
               </ul>
-            </div>
-          </Reveal>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </SectionShell>
     </>
