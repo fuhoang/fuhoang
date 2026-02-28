@@ -32,7 +32,7 @@ export function WhyWorkWithMe() {
         <div className="grid gap-4 md:grid-cols-2">
           {items.map(([t, d]) => (
             <Reveal key={t}>
-              <div className="rounded-xl border border-panel bg-surface/30 p-6">
+              <div className="card-surface rounded-xl border border-panel p-6">
                 <div className="text-lg font-semibold tracking-tight">{t}</div>
                 <p className="mt-2 text-muted">{d}</p>
               </div>

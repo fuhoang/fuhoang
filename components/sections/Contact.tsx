@@ -1,3 +1,4 @@
+import { SocialLinks } from "@/components/layout/SocialLinks";
 import { PosterLine } from "@/components/ui/PosterLine";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionShell } from "./_shared/SectionShell";
@@ -15,7 +16,7 @@ export function Contact() {
                 within 24 hours.
               </p>
 
-              <div className="mt-6 rounded-xl border border-panel bg-surface/30 p-6">
+              <div className="card-surface mt-6 rounded-xl border border-panel p-6">
                 <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
                   Email
                 </div>
@@ -27,13 +28,14 @@ export function Contact() {
                     fuhoang84@googlemail.com
                   </a>
                 </div>
+                <SocialLinks className="mt-5" />
               </div>
             </Reveal>
           </div>
 
           <div className="md:col-span-6">
             <Reveal>
-              <div className="rounded-xl border border-panel bg-surface/30 p-6">
+              <div className="card-surface rounded-xl border border-panel p-6">
               <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
                 What to include
               </div>

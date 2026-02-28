@@ -29,7 +29,7 @@ export function Principles() {
         <div className="grid gap-4 md:grid-cols-2">
           {principles.map((p) => (
             <Reveal key={p.title}>
-              <div className="rounded-xl border border-panel bg-surface/30 p-6">
+              <div className="card-surface rounded-xl border border-panel p-6">
                 <div className="text-lg font-semibold tracking-tight">
                   {p.title}
                 </div>

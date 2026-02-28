@@ -15,7 +15,7 @@ export function ProofStrip() {
           {items.map((x) => (
             <div
               key={x.k}
-              className="rounded-xl border border-panel bg-surface/20 p-5"
+              className="card-surface rounded-xl border border-panel p-5"
             >
               <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
                 {x.k}

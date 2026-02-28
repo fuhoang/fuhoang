@@ -1,4 +1,5 @@
 import { Container } from "./Container";
+import { SocialLinks } from "./SocialLinks";
 
 export function Footer() {
   return (
@@ -6,10 +7,11 @@ export function Footer() {
       <Container>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm text-muted">
           <div>© {new Date().getFullYear()} Fu Hoang</div>
-          <div className="flex gap-5">
+          <div className="flex items-center gap-5">
             <a className="hover:text-slate-100 transition" href="#contact">
               Contact
             </a>
+            <SocialLinks />
           </div>
         </div>
       </Container>

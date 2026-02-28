@@ -29,7 +29,7 @@ export function Services() {
         <div className="grid gap-4 md:grid-cols-2">
           {services.map((s) => (
             <Reveal key={s.title}>
-              <div className="rounded-xl border border-panel bg-surface/30 p-6 transition hover:bg-surface/50">
+              <div className="card-surface card-surface-hover rounded-xl border border-panel p-6 transition">
                 <h3 className="text-lg font-semibold tracking-tight">
                   {s.title}
                 </h3>

@@ -9,7 +9,7 @@ export function Work() {
       <SectionShell id="work" eyebrow="Selected work" title="Recent work">
         <div className="divide-y divide-slate-800/70 rounded-xl border border-panel overflow-hidden">
           <Reveal>
-            <div className="bg-surface/30 p-6 hover:bg-surface/50 transition">
+            <div className="card-surface card-surface-hover p-6 transition">
               <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
                 <div className="text-base font-semibold tracking-tight">
                   Lotto Logic — SaaS Platform Engineering (2019–2024)
@@ -37,7 +37,7 @@ export function Work() {
           </Reveal>
 
           <Reveal>
-            <div className="bg-surface/30 p-6 hover:bg-surface/50 transition">
+            <div className="card-surface card-surface-hover p-6 transition">
               <div className="text-base font-semibold tracking-tight">
                 Enterprise platforms
               </div>

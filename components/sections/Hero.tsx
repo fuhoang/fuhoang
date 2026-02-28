@@ -9,22 +9,27 @@ export function Hero() {
         <div className="grid gap-10 md:grid-cols-12 md:items-start">
           <div className="md:col-span-8">
             <Reveal>
+              {/* Eyebrow */}
               <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
-                Senior Full-Stack Software Developer · London
+                <span className="hero-gradient-text">Next.js</span> · Laravel ·
+                <span className="hero-gradient-text">MongoDB</span>· Symfony ·{" "}
+                <span className="hero-gradient-text">Python </span>· JS
               </div>
 
+              {/* Main headline */}
               <h1 className="mt-5 text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
-                Building and improving production-grade web systems with{" "}
-                <span className="text-white">Next.js</span> and{" "}
-                <span className="text-white">Laravel</span>.
+                <span className="hero-gradient-text">Full-Stack</span> Software
+                Developer
               </h1>
 
+              {/* Supporting line */}
               <p className="mt-6 text-lg text-muted max-w-2xl">
-                I embed within startups and established teams to deliver
-                reliable full-stack applications — while strengthening
-                architecture, testing practices, and deployment workflows.
+                Embedded delivery for startups and SMEs — building
+                production-ready applications while improving reliability,
+                testing, and deployment workflows.
               </p>
 
+              {/* CTA */}
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#contact"
@@ -47,11 +52,12 @@ export function Hero() {
             </Reveal>
           </div>
 
+          {/* Right Panel */}
           <div className="md:col-span-4">
             <Reveal>
               <div className="rounded-xl border border-panel bg-surface/30 p-6">
                 <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
-                  Details
+                  Focus
                 </div>
 
                 <dl className="mt-5 space-y-4 text-sm">
@@ -66,7 +72,7 @@ export function Hero() {
                     <dd className="mt-1 text-slate-100">Symfony · Python</dd>
                   </div>
                   <div>
-                    <dt className="text-muted">Focus</dt>
+                    <dt className="text-muted">Engineering focus</dt>
                     <dd className="mt-1 text-slate-100">
                       Reliability · CI/CD · Performance
                     </dd>
@@ -79,7 +85,7 @@ export function Hero() {
       </Container>
 
       <div className="mt-12">
-        <PosterLine text="DESIGN • BUILD • DEPLOY • SCALE" />
+        <PosterLine text="BUILD • STABILISE • SCALE" />
       </div>
     </section>
   );

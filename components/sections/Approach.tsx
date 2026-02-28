@@ -33,7 +33,7 @@ export function Approach() {
         <div className="grid gap-4 md:grid-cols-2">
           {steps.map((s) => (
             <Reveal key={s.n}>
-              <div className="rounded-xl border border-panel bg-surface/30 p-6">
+              <div className="card-surface rounded-xl border border-panel p-6">
                 <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
                   {s.n}
                 </div>
