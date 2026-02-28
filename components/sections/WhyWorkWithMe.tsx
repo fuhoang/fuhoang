@@ -1,40 +1,25 @@
+"use client";
+
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { PosterLine } from "@/components/ui/PosterLine";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionShell } from "./_shared/SectionShell";
 
-const items: Array<[string, string]> = [
-  [
-    "Senior-level ownership",
-    "You work directly with the engineer responsible for architecture and delivery.",
-  ],
-  [
-    "Production experience",
-    "Live SaaS and enterprise environments where reliability matters.",
-  ],
-  [
-    "Improve while delivering",
-    "Ship features while strengthening structure and engineering standards.",
-  ],
-  [
-    "Clear communication",
-    "Structured scope, realistic timelines, predictable execution.",
-  ],
-];
-
 export function WhyWorkWithMe() {
+  const { t } = useLanguage();
+
   return (
     <>
-      <PosterLine text="CLARITY • RELIABILITY • DELIVERY • QUALITY" />
-      <SectionShell
-        eyebrow="Why work with me"
-        title="A senior engineer embedded in your team"
-      >
+      <PosterLine text={t.whyWork.poster} />
+      <SectionShell eyebrow={t.whyWork.eyebrow} title={t.whyWork.title}>
         <div className="grid gap-4 md:grid-cols-2">
-          {items.map(([t, d]) => (
-            <Reveal key={t}>
+          {t.whyWork.items.map((item) => (
+            <Reveal key={item.title}>
               <div className="card-surface rounded-xl border border-panel p-6">
-                <div className="text-lg font-semibold tracking-tight">{t}</div>
-                <p className="mt-2 text-muted">{d}</p>
+                <div className="text-lg font-semibold tracking-tight">
+                  {item.title}
+                </div>
+                <p className="mt-2 text-muted">{item.desc}</p>
               </div>
             </Reveal>
           ))}

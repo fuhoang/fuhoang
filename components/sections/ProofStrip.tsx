@@ -1,18 +1,16 @@
+"use client";
+
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { Container } from "@/components/layout/Container";
 
-const items = [
-  { k: "Experience", v: "10+ Years Engineering" },
-  { k: "Scope", v: "Full-Stack Systems" },
-  { k: "Quality", v: "Testing & CI/CD" },
-  { k: "Credibility", v: "Enterprise & SaaS Platforms" },
-];
-
 export function ProofStrip() {
+  const { t } = useLanguage();
+
   return (
     <section className="pb-10">
       <Container>
         <div className="grid gap-4 md:grid-cols-4 text-sm">
-          {items.map((x) => (
+          {t.proofStrip.map((x) => (
             <div
               key={x.k}
               className="card-surface rounded-xl border border-panel p-5"

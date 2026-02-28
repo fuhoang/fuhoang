@@ -1,8 +1,13 @@
+"use client";
+
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PosterLine } from "@/components/ui/PosterLine";
 
 export function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-20 md:py-28">
       <Container>
@@ -18,15 +23,16 @@ export function Hero() {
 
               {/* Main headline */}
               <h1 className="mt-5 text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
-                <span className="hero-gradient-text">Full-Stack</span> Software
-                Developer
+                {t.hero.headlinePrefix}
+                <span className="hero-gradient-text">
+                  {t.hero.headlineHighlight}
+                </span>
+                {t.hero.headlineSuffix}
               </h1>
 
               {/* Supporting line */}
               <p className="mt-6 text-lg text-muted max-w-2xl">
-                Embedded delivery for startups and SMEs — building
-                production-ready applications while improving reliability,
-                testing, and deployment workflows.
+                {t.hero.body}
               </p>
 
               {/* CTA */}
@@ -35,19 +41,18 @@ export function Hero() {
                   href="#contact"
                   className="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white hover:opacity-90 transition"
                 >
-                  Email me
+                  {t.hero.primaryCta}
                 </a>
                 <a
                   href="#work"
                   className="rounded-lg border border-panel bg-surface/20 px-6 py-3 text-sm font-medium text-slate-100 hover:bg-surface/40 transition"
                 >
-                  View selected work
+                  {t.hero.secondaryCta}
                 </a>
               </div>
 
               <p className="mt-4 text-sm text-muted">
-                Senior-level execution. Independent thinking. No agency
-                overhead.
+                {t.hero.kicker}
               </p>
             </Reveal>
           </div>
@@ -57,22 +62,22 @@ export function Hero() {
             <Reveal>
               <div className="rounded-xl border border-panel bg-surface/30 p-6">
                 <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
-                  Focus
+                  {t.hero.focus}
                 </div>
 
                 <dl className="mt-5 space-y-4 text-sm">
                   <div>
-                    <dt className="text-muted">Core stack</dt>
+                    <dt className="text-muted">{t.hero.coreStack}</dt>
                     <dd className="mt-1 text-slate-100">
                       Next.js · React · Laravel · MongoDB
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-muted">Additional</dt>
+                    <dt className="text-muted">{t.hero.additional}</dt>
                     <dd className="mt-1 text-slate-100">Symfony · Python</dd>
                   </div>
                   <div>
-                    <dt className="text-muted">Engineering focus</dt>
+                    <dt className="text-muted">{t.hero.engineeringFocus}</dt>
                     <dd className="mt-1 text-slate-100">
                       Reliability · CI/CD · Performance
                     </dd>
@@ -85,7 +90,7 @@ export function Hero() {
       </Container>
 
       <div className="mt-12">
-        <PosterLine text="BUILD • STABILISE • SCALE" />
+        <PosterLine text={t.hero.poster} />
       </div>
     </section>
   );

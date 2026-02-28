@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { LanguageProvider } from "@/components/i18n/LanguageProvider";
 
 import { Hero } from "@/components/sections/Hero";
 import { ProofStrip } from "@/components/sections/ProofStrip";
@@ -12,7 +13,7 @@ import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
   return (
-    <>
+    <LanguageProvider>
       <Header />
       <main>
         <Hero />
@@ -25,6 +26,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </LanguageProvider>
   );
 }

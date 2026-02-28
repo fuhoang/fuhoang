@@ -1,17 +1,19 @@
 "use client";
 
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { Container } from "./Container";
 import { useEffect, useState } from "react";
 
-const nav = [
-  { href: "#services", label: "Services" },
-  { href: "#work", label: "Work" },
-  { href: "#approach", label: "Approach" },
-  { href: "#contact", label: "Contact" },
-];
-
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const { locale, setLocale, t } = useLanguage();
+
+  const nav = [
+    { href: "#services", label: t.header.nav.services },
+    { href: "#work", label: t.header.nav.work },
+    { href: "#approach", label: t.header.nav.approach },
+    { href: "#contact", label: t.header.nav.contact },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -44,12 +46,34 @@ export function Header() {
             ))}
           </nav>
 
-          <a
-            href="#contact"
-            className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:opacity-90 transition"
-          >
-            Email me
-          </a>
+          <div className="flex items-center gap-4">
+            <div className="px-4 flex items-center gap-2 rounded-lg border border-panel bg-surface/20 ">
+              <span className="sr-only">{t.header.languageLabel}</span>
+              {(["en", "es"] as const).map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => setLocale(option)}
+                  className={[
+                    "rounded-md px-4 py-4 text-xs font-semibold uppercase transition",
+                    locale === option
+                      ? "bg-accent text-white"
+                      : "text-muted hover:text-slate-100",
+                  ].join(" ")}
+                  aria-pressed={locale === option}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+
+            <a
+              href="#contact"
+              className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:opacity-90 transition"
+            >
+              {t.header.email}
+            </a>
+          </div>
         </div>
       </Container>
     </header>

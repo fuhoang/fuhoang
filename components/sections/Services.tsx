@@ -1,33 +1,23 @@
+"use client";
+
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { PosterLine } from "@/components/ui/PosterLine";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionShell } from "./_shared/SectionShell";
 
-const services = [
-  {
-    title: "Full-Stack Development",
-    desc: "Hands-on delivery of modern applications — from React frontends to scalable Laravel APIs and MongoDB backends.",
-  },
-  {
-    title: "Platform Improvement",
-    desc: "Stabilise legacy systems, reduce recurring bugs, and improve maintainability without risky rewrites.",
-  },
-  {
-    title: "Testing & CI/CD",
-    desc: "Introduce automated testing (PHPUnit) and Git-based CI pipelines to improve deployment reliability.",
-  },
-  {
-    title: "API & Data Integrations",
-    desc: "Build and maintain reliable backend integrations and data workflows for production environments.",
-  },
-];
-
 export function Services() {
+  const { t } = useLanguage();
+
   return (
     <>
-      <PosterLine text="FRONTEND • BACKEND • APIs • DELIVERY" />
-      <SectionShell id="services" eyebrow="Services" title="How I can help">
+      <PosterLine text={t.services.poster} />
+      <SectionShell
+        id="services"
+        eyebrow={t.services.eyebrow}
+        title={t.services.title}
+      >
         <div className="grid gap-4 md:grid-cols-2">
-          {services.map((s) => (
+          {t.services.items.map((s) => (
             <Reveal key={s.title}>
               <div className="card-surface card-surface-hover rounded-xl border border-panel p-6 transition">
                 <h3 className="text-lg font-semibold tracking-tight">
