@@ -14,7 +14,6 @@ type TranslationShape = {
   header: {
     nav: { services: string; work: string; approach: string; contact: string };
     email: string;
-    languageLabel: string;
   };
   footer: {
     contact: string;
@@ -90,7 +89,6 @@ const translations: Record<Locale, TranslationShape> = {
         contact: "Contact",
       },
       email: "Email me",
-      languageLabel: "Language",
     },
     footer: {
       contact: "Contact",
@@ -255,7 +253,6 @@ const translations: Record<Locale, TranslationShape> = {
         contact: "Contacto",
       },
       email: "Escríbeme",
-      languageLabel: "Idioma",
     },
     footer: {
       contact: "Contacto",

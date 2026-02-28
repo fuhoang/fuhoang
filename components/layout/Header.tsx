@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const { locale, setLocale, t } = useLanguage();
+  const isSpanish = locale === "es";
 
   const nav = [
     { href: "#services", label: t.header.nav.services },
@@ -47,25 +48,37 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <div className="px-4 flex items-center gap-2 rounded-lg border border-panel bg-surface/20 ">
-              <span className="sr-only">{t.header.languageLabel}</span>
-              {(["en", "es"] as const).map((option) => (
-                <button
-                  key={option}
-                  type="button"
-                  onClick={() => setLocale(option)}
+            <button
+              type="button"
+              role="switch"
+              aria-checked={isSpanish}
+              aria-label={isSpanish ? "Switch to English" : "Cambiar a espanol"}
+              onClick={() => setLocale(isSpanish ? "en" : "es")}
+              className="inline-flex h-12 items-center rounded-full border border-panel bg-surface/20 p-1.5 transition"
+            >
+              <span className="flex items-center gap-2 text-[11px] font-semibold uppercase">
+                <span
                   className={[
-                    "rounded-md px-4 py-4 text-xs font-semibold uppercase transition",
-                    locale === option
-                      ? "bg-accent text-white"
-                      : "text-muted hover:text-slate-100",
+                    "inline-flex h-8 items-center justify-center rounded-full border px-4 leading-none transition",
+                    isSpanish
+                      ? "border-panel text-muted"
+                      : "border-accent bg-accent text-white",
                   ].join(" ")}
-                  aria-pressed={locale === option}
                 >
-                  {option}
-                </button>
-              ))}
-            </div>
+                  EN
+                </span>
+                <span
+                  className={[
+                    "inline-flex h-8 items-center justify-center rounded-full border px-4 leading-none transition",
+                    isSpanish
+                      ? "border-accent bg-accent text-white"
+                      : "border-panel text-muted",
+                  ].join(" ")}
+                >
+                  ES
+                </span>
+              </span>
+            </button>
 
             <a
               href="#contact"
