@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Instagram, Linkedin, Mail } from "lucide-react";
 
 const links = [
   {
@@ -15,6 +15,11 @@ const links = [
     href: "https://www.linkedin.com/in/fu-hoang84/",
     label: "LinkedIn",
     icon: Linkedin,
+  },
+  {
+    href: "https://www.instagram.com/fuhoang/",
+    label: "Instagram",
+    icon: Instagram,
   },
 ];
 
