@@ -12,7 +12,15 @@ export const metadata: Metadata = {
     title: "Fu Hoang — Senior Full-Stack Software Developer",
     description:
       "Production-grade web systems. Next.js, React, Laravel, MongoDB. Testing, CI/CD, AWS.",
+    images: [{ url: "/opengraph-image" }],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fu Hoang — Senior Full-Stack Software Developer",
+    description:
+      "Production-grade web systems. Next.js, React, Laravel, MongoDB. Testing, CI/CD, AWS.",
+    images: ["/opengraph-image"],
   },
 };
 
