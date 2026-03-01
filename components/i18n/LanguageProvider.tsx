@@ -1,19 +1,23 @@
 "use client";
 
 import {
+  useCallback,
   createContext,
   useContext,
   useMemo,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 
 type Locale = "en" | "es";
+const LOCALE_STORAGE_KEY = "locale";
 
 type TranslationShape = {
   header: {
     nav: { services: string; work: string; approach: string; contact: string };
     email: string;
+    openMenu: string;
+    closeMenu: string;
   };
   footer: {
     contact: string;
@@ -89,6 +93,8 @@ const translations: Record<Locale, TranslationShape> = {
         contact: "Contact",
       },
       email: "Email me",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
     },
     footer: {
       contact: "Contact",
@@ -253,6 +259,8 @@ const translations: Record<Locale, TranslationShape> = {
         contact: "Contacto",
       },
       email: "Escríbeme",
+      openMenu: "Abrir menu",
+      closeMenu: "Cerrar menu",
     },
     footer: {
       contact: "Contacto",
@@ -416,6 +424,35 @@ type LanguageContextValue = {
   t: TranslationShape;
 };
 
+function readStoredLocale(): Locale {
+  if (typeof window === "undefined") {
+    return "en";
+  }
+
+  return window.localStorage.getItem(LOCALE_STORAGE_KEY) === "es" ? "es" : "en";
+}
+
+function subscribe(onStoreChange: () => void) {
+  if (typeof window === "undefined") {
+    return () => {};
+  }
+
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === null || event.key === LOCALE_STORAGE_KEY) {
+      onStoreChange();
+    }
+  };
+  const handleLocaleChange = () => onStoreChange();
+
+  window.addEventListener("storage", handleStorage);
+  window.addEventListener("localechange", handleLocaleChange);
+
+  return () => {
+    window.removeEventListener("storage", handleStorage);
+    window.removeEventListener("localechange", handleLocaleChange);
+  };
+}
+
 const LanguageContext = createContext<LanguageContextValue>({
   locale: "en",
   setLocale: () => {},
@@ -423,7 +460,19 @@ const LanguageContext = createContext<LanguageContextValue>({
 });
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("en");
+  const locale: Locale = useSyncExternalStore(
+    subscribe,
+    readStoredLocale,
+    () => "en",
+  );
+  const setLocale = useCallback((nextLocale: Locale) => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    window.localStorage.setItem(LOCALE_STORAGE_KEY, nextLocale);
+    window.dispatchEvent(new Event("localechange"));
+  }, []);
 
   const value = useMemo(
     () => ({
@@ -431,7 +480,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       setLocale,
       t: translations[locale],
     }),
-    [locale],
+    [locale, setLocale],
   );
 
   return (

@@ -1,0 +1,59 @@
+import { fireEvent, render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it } from "vitest";
+
+import { LanguageProvider } from "@/components/i18n/LanguageProvider";
+import { Header } from "../Header";
+
+function renderHeader() {
+  return render(
+    <LanguageProvider>
+      <Header />
+    </LanguageProvider>,
+  );
+}
+
+describe("Header", () => {
+  beforeEach(() => {
+    window.localStorage.clear();
+  });
+
+  it("persists language selection", () => {
+    const { unmount } = renderHeader();
+
+    fireEvent.click(screen.getByRole("switch"));
+
+    expect(window.localStorage.getItem("locale")).toBe("es");
+    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(1);
+
+    unmount();
+    renderHeader();
+
+    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(1);
+  });
+
+  it("renders the brand logo link", () => {
+    renderHeader();
+
+    expect(screen.getByRole("link", { name: "Fu Hoang home" })).toHaveAttribute(
+      "href",
+      "#",
+    );
+  });
+
+  it("opens and closes the mobile menu", () => {
+    renderHeader();
+
+    const toggle = screen.getByRole("button", { name: "Open menu" });
+    fireEvent.click(toggle);
+
+    expect(
+      screen.getByRole("navigation", { name: "Mobile navigation" }),
+    ).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Close menu" }));
+
+    expect(
+      screen.queryByRole("navigation", { name: "Mobile navigation" }),
+    ).not.toBeInTheDocument();
+  });
+});
