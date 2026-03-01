@@ -16,12 +16,23 @@ html {
 @layer base {
   body {
     color: var(--text);
-    font-family: var(--font-display), "Segoe UI", sans-serif;
+    font-family:
+      "Roboto",
+      "Segoe UI",
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
   }
 
   code,
   pre {
-    font-family: var(--font-code), "SFMono-Regular", monospace;
+    font-family:
+      "JetBrains Mono",
+      "SFMono-Regular",
+      "SFMono",
+      "Cascadia Code",
+      Consolas,
+      monospace;
   }
 }
 
