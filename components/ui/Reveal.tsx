@@ -2,15 +2,28 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
-export function Reveal({ children }: { children: React.ReactNode }) {
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
   const reduce = useReducedMotion();
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: reduce ? 0 : 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      className={className}
+      initial={{
+        opacity: 0,
+        y: reduce ? 0 : 16,
+        filter: reduce ? "none" : "blur(6px)",
+      }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: reduce ? 0.2 : 0.6, delay, ease: "easeOut" }}
     >
       {children}
     </motion.div>
