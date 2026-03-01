@@ -111,6 +111,53 @@ html {
     color: transparent;
     -webkit-text-fill-color: transparent;
   }
+  .tagged-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .tagged-heading-h2 {
+    gap: 0.7rem;
+  }
+  .tagged-heading-bracket {
+    font-family:
+      "JetBrains Mono",
+      "SFMono-Regular",
+      "SFMono",
+      "Cascadia Code",
+      Consolas,
+      monospace;
+    font-size: 0.7em;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background-image: linear-gradient(135deg, #22d3ee 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.95;
+  }
+  .tagged-heading-frame {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.18em 0.5em;
+    border: 1px solid rgba(96, 165, 250, 0.38);
+    border-radius: 0.65em;
+    background:
+      linear-gradient(135deg, rgba(34, 211, 238, 0.08), rgba(168, 85, 247, 0.1)),
+      rgba(15, 23, 42, 0.38);
+    box-shadow:
+      inset 0 0 0 1px rgba(244, 114, 182, 0.08),
+      0 0 12px rgba(34, 211, 238, 0.1),
+      0 0 16px rgba(217, 70, 239, 0.08);
+  }
+  .tagged-heading-text {
+    line-height: inherit;
+  }
   .hero-shell {
     border: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
     border-radius: 1.5rem;
