@@ -1,3 +1,8 @@
+ "use client";
+
+import { useRef } from "react";
+
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -12,24 +17,40 @@ export function SectionShell({
   title: string;
   children: React.ReactNode;
 }) {
-  return (
-    <section id={id} className="py-20 md:py-24">
-      <Container>
-        <Reveal>
-          <div className="max-w-3xl">
-            {eyebrow ? (
-              <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
-                {eyebrow}
-              </div>
-            ) : null}
-            <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-              {title}
-            </h2>
-          </div>
-        </Reveal>
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const shellX = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    reduce ? [0, 0, 0] : [-72, 0, 72],
+  );
 
-        <div className="mt-10">{children}</div>
-      </Container>
+  return (
+    <section ref={sectionRef} id={id} className="py-20 md:py-24">
+      <motion.div style={{ x: shellX, willChange: "transform" }}>
+        <Container>
+          <Reveal>
+            <div className="max-w-3xl">
+              {eyebrow ? (
+                <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
+                  {eyebrow}
+                </div>
+              ) : null}
+              <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+                {title}
+              </h2>
+            </div>
+          </Reveal>
+
+          <Reveal className="mt-10" delay={0.08}>
+            <div>{children}</div>
+          </Reveal>
+        </Container>
+      </motion.div>
     </section>
   );
 }
