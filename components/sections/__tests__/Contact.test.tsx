@@ -8,7 +8,7 @@ describe("Contact", () => {
     render(<Contact />);
 
     expect(
-      screen.getByRole("heading", { name: /let.s talk/i }),
+      screen.getByRole("heading", { name: /start the conversation/i }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "fuhoang84@googlemail.com" }),
@@ -20,8 +20,9 @@ describe("Contact", () => {
 
     expect(screen.getByText("What to include")).toBeInTheDocument();
     expect(screen.getByText("• Current stack")).toBeInTheDocument();
-    expect(screen.getByText("• What you’re building")).toBeInTheDocument();
-    expect(screen.getByText("• Timeline")).toBeInTheDocument();
-    expect(screen.getByText("• Where you need support")).toBeInTheDocument();
+    expect(screen.getByText("• What you are building")).toBeInTheDocument();
+    expect(screen.getByText("• Current problem or blocker")).toBeInTheDocument();
+    expect(screen.getByText("• Target timeline")).toBeInTheDocument();
+    expect(screen.getByText("• Where you need hands-on support")).toBeInTheDocument();
   });
 });

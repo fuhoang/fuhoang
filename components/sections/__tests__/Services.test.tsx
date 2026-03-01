@@ -8,7 +8,7 @@ describe("Services", () => {
     render(<Services />);
 
     expect(
-      screen.getByRole("heading", { name: "How I can help" }),
+      screen.getByRole("heading", { name: "Where I add value" }),
     ).toBeInTheDocument();
   });
 
