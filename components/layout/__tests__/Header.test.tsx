@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { LanguageProvider } from "@/components/i18n/LanguageProvider";
@@ -15,6 +15,12 @@ function renderHeader() {
 describe("Header", () => {
   beforeEach(() => {
     window.localStorage.clear();
+    Object.defineProperty(window, "innerWidth", {
+      configurable: true,
+      writable: true,
+      value: 375,
+    });
+    window.dispatchEvent(new Event("resize"));
   });
 
   it("persists language selection", () => {
@@ -23,12 +29,12 @@ describe("Header", () => {
     fireEvent.click(screen.getByRole("switch"));
 
     expect(window.localStorage.getItem("locale")).toBe("es");
-    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(1);
+    expect(screen.getByRole("link", { name: /servicios/i })).toBeInTheDocument();
 
     unmount();
     renderHeader();
 
-    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(1);
+    expect(screen.getByRole("link", { name: /servicios/i })).toBeInTheDocument();
   });
 
   it("renders the brand logo link", () => {
@@ -44,21 +50,20 @@ describe("Header", () => {
     renderHeader();
 
     const toggle = screen.getByRole("button", { name: "Open menu" });
-    const navigation = document.getElementById("mobile-navigation");
-
-    expect(navigation).not.toBeNull();
     expect(toggle).toHaveAttribute("aria-expanded", "false");
-    expect(navigation).toHaveAttribute("aria-hidden", "true");
-    expect(navigation?.className).toContain("pointer-events-none");
+    expect(screen.queryByRole("navigation", { name: "Mobile navigation" })).toBeNull();
 
     fireEvent.click(toggle);
+
+    const navigation = screen.getByRole("navigation", {
+      name: "Mobile navigation",
+    });
 
     expect(screen.getByRole("button", { name: "Close menu" })).toHaveAttribute(
       "aria-expanded",
       "true",
     );
-    expect(navigation).toHaveAttribute("aria-hidden", "false");
-    expect(navigation?.className).toContain("pointer-events-auto");
+    expect(navigation).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "Close menu" }));
 
@@ -66,8 +71,9 @@ describe("Header", () => {
       "aria-expanded",
       "false",
     );
-    expect(navigation).toHaveAttribute("aria-hidden", "true");
-    expect(navigation?.className).toContain("pointer-events-none");
+    expect(
+      screen.queryByRole("navigation", { name: "Mobile navigation" }),
+    ).toBeNull();
   });
 
   it("closes the mobile menu on outside click", () => {
@@ -80,5 +86,23 @@ describe("Header", () => {
       "aria-expanded",
       "false",
     );
+  });
+
+  it("uses desktop controls at desktop-width browser sizes", async () => {
+    Object.defineProperty(window, "innerWidth", {
+      configurable: true,
+      writable: true,
+      value: 700,
+    });
+    window.dispatchEvent(new Event("resize"));
+
+    renderHeader();
+
+    await waitFor(() => {
+      expect(screen.queryByRole("button", { name: "Open menu" })).toBeNull();
+    });
+
+    expect(screen.queryByRole("navigation", { name: "Mobile navigation" })).toBeNull();
+    expect(screen.getAllByRole("link", { name: /email me/i }).length).toBe(1);
   });
 });

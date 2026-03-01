@@ -10,6 +10,10 @@ import { useEffect, useRef, useState } from "react";
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hasMeasuredViewport, setHasMeasuredViewport] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window === "undefined" ? false : window.innerWidth >= 640,
+  );
   const { t } = useLanguage();
   const headerRef = useRef<HTMLElement>(null);
 
@@ -28,19 +32,19 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    if (!menuOpen) {
-      return;
-    }
-
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
+      const nextIsDesktop = window.innerWidth >= 640;
+      setIsDesktop(nextIsDesktop);
+      setHasMeasuredViewport(true);
+      if (nextIsDesktop) {
         setMenuOpen(false);
       }
     };
 
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [menuOpen]);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -88,7 +92,7 @@ export function Header() {
         <div className="flex items-center justify-between py-4">
           <BrandLogo />
 
-          <nav className="hidden md:flex items-center gap-7 text-sm text-muted">
+          <nav className="hidden sm:flex items-center gap-7 text-sm text-muted">
             {nav.map((n) => (
               <a key={n.href} href={n.href} className="group relative">
                 <span className="transition-colors duration-200 group-hover:text-slate-100">
@@ -102,61 +106,60 @@ export function Header() {
           <div className="flex items-center gap-4">
             <LanguageSwitch />
 
-            <a
-              href="#contact"
-              className="hidden rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition hover:opacity-90 md:inline-flex"
-            >
-              {t.header.email}
-            </a>
+            {!hasMeasuredViewport || isDesktop ? (
+              <a
+                href="#contact"
+                className="hidden rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition hover:opacity-90 sm:inline-flex"
+              >
+                {t.header.email}
+              </a>
+            ) : null}
 
-            <button
-              type="button"
-              onClick={() => setMenuOpen((current) => !current)}
-              aria-expanded={menuOpen}
-              aria-controls="mobile-navigation"
-              aria-label={menuOpen ? t.header.closeMenu : t.header.openMenu}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-panel bg-surface/20 text-slate-100 transition hover:bg-surface/35 md:hidden"
-            >
-              {menuOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
+            {!hasMeasuredViewport || !isDesktop ? (
+              <button
+                type="button"
+                onClick={() => setMenuOpen((current) => !current)}
+                aria-expanded={menuOpen}
+                aria-controls="mobile-navigation"
+                aria-label={menuOpen ? t.header.closeMenu : t.header.openMenu}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-panel bg-surface/20 text-slate-100 transition hover:bg-surface/35 sm:hidden"
+              >
+                {menuOpen ? <X size={18} /> : <Menu size={18} />}
+              </button>
+            ) : null}
           </div>
         </div>
 
-        <nav
-          id="mobile-navigation"
-          aria-label="Mobile navigation"
-          aria-hidden={!menuOpen}
-          inert={!menuOpen}
-          className={[
-            "mb-4 overflow-hidden rounded-2xl border border-panel card-surface transition-all duration-200 ease-out md:hidden",
-            menuOpen
-              ? "pointer-events-auto max-h-80 translate-y-0 opacity-100"
-              : "pointer-events-none max-h-0 -translate-y-2 opacity-0",
-          ].join(" ")}
-        >
-          <div className="p-4">
-            <div className="flex flex-col gap-2">
-              {nav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-xl px-3 py-2.5 text-sm font-medium text-slate-100 transition hover:bg-surface/35"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
+        {menuOpen && !isDesktop ? (
+          <nav
+            id="mobile-navigation"
+            aria-label="Mobile navigation"
+            className="mb-4 rounded-2xl border border-panel card-surface opacity-100 transition-all duration-200 ease-out sm:hidden"
+          >
+            <div className="p-4">
+              <div className="flex flex-col gap-2">
+                {nav.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="rounded-xl px-3 py-2.5 text-sm font-medium text-slate-100 transition hover:bg-surface/35"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
 
-            <a
-              href="#contact"
-              onClick={() => setMenuOpen(false)}
-              className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-accent px-4 py-3 text-sm font-medium text-white transition hover:opacity-90"
-            >
-              {t.header.email}
-            </a>
-          </div>
-        </nav>
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-accent px-4 py-3 text-sm font-medium text-white transition hover:opacity-90"
+              >
+                {t.header.email}
+              </a>
+            </div>
+          </nav>
+        ) : null}
       </Container>
     </header>
   );
