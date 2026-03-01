@@ -23,12 +23,12 @@ describe("Header", () => {
     fireEvent.click(screen.getByRole("switch"));
 
     expect(window.localStorage.getItem("locale")).toBe("es");
-    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(2);
+    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(1);
 
     unmount();
     renderHeader();
 
-    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(2);
+    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(1);
   });
 
   it("renders the brand logo link", () => {
@@ -44,12 +44,12 @@ describe("Header", () => {
     renderHeader();
 
     const toggle = screen.getByRole("button", { name: "Open menu" });
-    const navigation = screen.getByRole("navigation", {
-      name: "Mobile navigation",
-    });
+    const navigation = document.getElementById("mobile-navigation");
 
+    expect(navigation).not.toBeNull();
     expect(toggle).toHaveAttribute("aria-expanded", "false");
-    expect(navigation.className).toContain("pointer-events-none");
+    expect(navigation).toHaveAttribute("aria-hidden", "true");
+    expect(navigation?.className).toContain("pointer-events-none");
 
     fireEvent.click(toggle);
 
@@ -57,7 +57,8 @@ describe("Header", () => {
       "aria-expanded",
       "true",
     );
-    expect(navigation.className).toContain("pointer-events-auto");
+    expect(navigation).toHaveAttribute("aria-hidden", "false");
+    expect(navigation?.className).toContain("pointer-events-auto");
 
     fireEvent.click(screen.getByRole("button", { name: "Close menu" }));
 
@@ -65,7 +66,8 @@ describe("Header", () => {
       "aria-expanded",
       "false",
     );
-    expect(navigation.className).toContain("pointer-events-none");
+    expect(navigation).toHaveAttribute("aria-hidden", "true");
+    expect(navigation?.className).toContain("pointer-events-none");
   });
 
   it("closes the mobile menu on outside click", () => {

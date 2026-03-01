@@ -125,6 +125,8 @@ export function Header() {
         <nav
           id="mobile-navigation"
           aria-label="Mobile navigation"
+          aria-hidden={!menuOpen}
+          inert={!menuOpen}
           className={[
             "mb-4 overflow-hidden rounded-2xl border border-panel card-surface transition-all duration-200 ease-out md:hidden",
             menuOpen
