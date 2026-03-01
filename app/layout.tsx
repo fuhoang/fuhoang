@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { siteUrl } from "@/lib/site";
 import { GalaxyBackground } from "@/components/ui/GalaxyBackground";
 import "./globals.css";
 
@@ -6,7 +7,7 @@ export const metadata: Metadata = {
   title: "Fu Hoang — Senior Full-Stack Software Developer (London)",
   description:
     "Senior Full-Stack Software Developer in London. Next.js, React, Laravel, MongoDB. Testing, CI/CD, AWS. Contract & freelance.",
-  metadataBase: new URL("https://example.com"), // change when you have your real domain
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: "Fu Hoang — Senior Full-Stack Software Developer",
     description:

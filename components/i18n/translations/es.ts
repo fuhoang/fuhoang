@@ -9,8 +9,10 @@ export const es: TranslationShape = {
       contact: "Contacto",
     },
     email: "Escríbeme",
-    openMenu: "Abrir menu",
-    closeMenu: "Cerrar menu",
+    openMenu: "Abrir menú",
+    closeMenu: "Cerrar menú",
+    switchToEnglish: "Cambiar a inglés",
+    switchToSpanish: "Cambiar a español",
   },
   footer: {
     contact: "Contacto",
