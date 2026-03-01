@@ -52,6 +52,54 @@ html {
     color: transparent;
     -webkit-text-fill-color: transparent;
   }
+  .brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #eef2ff;
+    text-shadow:
+      0 0 14px rgba(96, 165, 250, 0.28),
+      0 0 18px rgba(217, 70, 239, 0.22);
+  }
+  .brand-logo-bracket {
+    font-size: clamp(1rem, 1.3vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    background-image: linear-gradient(135deg, #22d3ee 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  .brand-logo-frame {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.4rem;
+    padding: 0.35rem 0.95rem;
+    border: 1px solid rgba(96, 165, 250, 0.45);
+    border-radius: 0.8rem;
+    background:
+      linear-gradient(135deg, rgba(34, 211, 238, 0.12), rgba(168, 85, 247, 0.14)),
+      rgba(15, 23, 42, 0.52);
+    box-shadow:
+      inset 0 0 0 1px rgba(244, 114, 182, 0.12),
+      0 0 16px rgba(34, 211, 238, 0.14),
+      0 0 24px rgba(217, 70, 239, 0.14);
+  }
+  .brand-logo-name {
+    font-size: clamp(0.95rem, 1.15vw, 1.45rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background-image: linear-gradient(90deg, #c4b5fd 0%, #67e8f9 38%, #f0abfc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
   .hero-shell {
     border: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
     border-radius: 1.5rem;
