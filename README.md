@@ -16,3 +16,9 @@ Open `http://localhost:3000` to view the site.
 ```bash
 npm run lint
 ```
+
+## Git Workflow
+
+Project Git flow and PR process:
+
+- [Git Flow Guide](./docs/GIT_FLOW.md)
