@@ -43,7 +43,7 @@ export function SectionShell({
               ) : null}
               <TaggedHeading
                 as="h2"
-                className="mt-4 text-[30px] md:text-[36px] font-semibold tracking-tight"
+                className="mt-4 text-[30px] md:text-[34px] font-semibold tracking-tight"
               >
                 {title}
               </TaggedHeading>
