@@ -4,6 +4,7 @@ import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { SocialLinks } from "@/components/layout/SocialLinks";
 import { PosterLine } from "@/components/ui/PosterLine";
 import { Reveal } from "@/components/ui/Reveal";
+import { profile } from "@/lib/profile";
 import { SectionShell } from "./_shared/SectionShell";
 
 export function Contact() {
@@ -31,9 +32,9 @@ export function Contact() {
                 <div className="mt-3 text-lg font-semibold">
                   <a
                     className="hover:opacity-90 transition"
-                    href="mailto:fuhoang84@googlemail.com"
+                    href={`mailto:${profile.email}`}
                   >
-                    fuhoang84@googlemail.com
+                    {profile.email}
                   </a>
                 </div>
                 <SocialLinks className="mt-5" />

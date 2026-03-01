@@ -4,6 +4,7 @@ import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { PosterLine } from "@/components/ui/PosterLine";
+import { profile } from "@/lib/profile";
 
 export function Hero() {
   const { t } = useLanguage();
@@ -17,9 +18,12 @@ export function Hero() {
               <Reveal>
                 {/* Eyebrow */}
                 <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
-                  <span className="hero-gradient-text">Next.js</span> · Laravel
-                  ·<span className="hero-gradient-text">MongoDB</span>· Symfony
-                  · <span className="hero-gradient-text">Python </span>· JS
+                  <span className="hero-gradient-text">{profile.heroTechEyebrow.primary}</span>
+                  {profile.heroTechEyebrow.separatorA}
+                  <span className="hero-gradient-text">{profile.heroTechEyebrow.secondary}</span>
+                  {profile.heroTechEyebrow.separatorB}
+                  <span className="hero-gradient-text">{profile.heroTechEyebrow.tertiary}</span>
+                  {profile.heroTechEyebrow.suffix}
                 </div>
 
                 {/* Main headline */}
@@ -65,19 +69,15 @@ export function Hero() {
                   <dl className="mt-5 space-y-4 text-sm">
                     <div>
                       <dt className="text-muted">{t.hero.coreStack}</dt>
-                      <dd className="mt-1 text-slate-100">
-                        Next.js · React · Laravel · MongoDB
-                      </dd>
+                      <dd className="mt-1 text-slate-100">{profile.heroCoreStack}</dd>
                     </div>
                     <div>
                       <dt className="text-muted">{t.hero.additional}</dt>
-                      <dd className="mt-1 text-slate-100">Symfony · Python</dd>
+                      <dd className="mt-1 text-slate-100">{profile.heroAdditionalStack}</dd>
                     </div>
                     <div>
                       <dt className="text-muted">{t.hero.engineeringFocus}</dt>
-                      <dd className="mt-1 text-slate-100">
-                        Reliability · CI/CD · Performance
-                      </dd>
+                      <dd className="mt-1 text-slate-100">{profile.heroEngineeringFocus}</dd>
                     </div>
                   </dl>
                 </div>
