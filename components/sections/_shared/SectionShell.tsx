@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/ui/Reveal";
+import { TaggedHeading } from "@/components/ui/TaggedHeading";
 
 export function SectionShell({
   id,
@@ -40,9 +41,12 @@ export function SectionShell({
                   {eyebrow}
                 </div>
               ) : null}
-              <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+              <TaggedHeading
+                as="h2"
+                className="mt-4 text-[30px] md:text-[36px] font-semibold tracking-tight"
+              >
                 {title}
-              </h2>
+              </TaggedHeading>
             </div>
           </Reveal>
 
