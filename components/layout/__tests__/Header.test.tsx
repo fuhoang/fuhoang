@@ -23,12 +23,12 @@ describe("Header", () => {
     fireEvent.click(screen.getByRole("switch"));
 
     expect(window.localStorage.getItem("locale")).toBe("es");
-    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(1);
+    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(2);
 
     unmount();
     renderHeader();
 
-    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(1);
+    expect(screen.getAllByRole("link", { name: /escríbeme/i }).length).toBe(2);
   });
 
   it("renders the brand logo link", () => {
@@ -44,16 +44,39 @@ describe("Header", () => {
     renderHeader();
 
     const toggle = screen.getByRole("button", { name: "Open menu" });
+    const navigation = screen.getByRole("navigation", {
+      name: "Mobile navigation",
+    });
+
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(navigation.className).toContain("pointer-events-none");
+
     fireEvent.click(toggle);
 
-    expect(
-      screen.getByRole("navigation", { name: "Mobile navigation" }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Close menu" })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+    expect(navigation.className).toContain("pointer-events-auto");
 
     fireEvent.click(screen.getByRole("button", { name: "Close menu" }));
 
-    expect(
-      screen.queryByRole("navigation", { name: "Mobile navigation" }),
-    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Open menu" })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+    expect(navigation.className).toContain("pointer-events-none");
+  });
+
+  it("closes the mobile menu on outside click", () => {
+    renderHeader();
+
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    fireEvent.mouseDown(document.body);
+
+    expect(screen.getByRole("button", { name: "Open menu" })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
   });
 });
