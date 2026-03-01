@@ -5,12 +5,13 @@ import { Menu, X } from "lucide-react";
 import { BrandLogo } from "./BrandLogo";
 import { Container } from "./Container";
 import { LanguageSwitch } from "./LanguageSwitch";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useLanguage();
+  const headerRef = useRef<HTMLElement>(null);
 
   const nav = [
     { href: "#services", label: t.header.nav.services },
@@ -41,8 +42,43 @@ export function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node | null;
+      if (target && headerRef.current && !headerRef.current.contains(target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+    };
+  }, [menuOpen]);
+
   return (
     <header
+      ref={headerRef}
       className={[
         "sticky top-0 z-50 border-b border-panel transition",
         scrolled ? "bg-ink/70 backdrop-blur" : "bg-ink",
@@ -86,19 +122,24 @@ export function Header() {
           </div>
         </div>
 
-        {menuOpen ? (
-          <nav
-            id="mobile-navigation"
-            aria-label="Mobile navigation"
-            className="mb-4 rounded-2xl border border-panel card-surface p-4 md:hidden"
-          >
+        <nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
+          className={[
+            "mb-4 overflow-hidden rounded-2xl border border-panel card-surface transition-all duration-200 ease-out md:hidden",
+            menuOpen
+              ? "pointer-events-auto max-h-80 translate-y-0 opacity-100"
+              : "pointer-events-none max-h-0 -translate-y-2 opacity-0",
+          ].join(" ")}
+        >
+          <div className="p-4">
             <div className="flex flex-col gap-2">
               {nav.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-xl px-3 py-2 text-sm font-medium text-slate-100 transition hover:bg-surface/35"
+                  className="rounded-xl px-3 py-2.5 text-sm font-medium text-slate-100 transition hover:bg-surface/35"
                 >
                   {item.label}
                 </a>
@@ -112,8 +153,8 @@ export function Header() {
             >
               {t.header.email}
             </a>
-          </nav>
-        ) : null}
+          </div>
+        </nav>
       </Container>
     </header>
   );
