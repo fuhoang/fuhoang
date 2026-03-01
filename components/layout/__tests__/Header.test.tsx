@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { LanguageProvider } from "@/components/i18n/LanguageProvider";
@@ -14,6 +14,17 @@ function renderHeader() {
 
 describe("Header", () => {
   beforeEach(() => {
+    window.matchMedia = ((query: string) => ({
+      matches: window.innerWidth >= 640,
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    })) as typeof window.matchMedia;
+
     window.localStorage.clear();
     Object.defineProperty(window, "innerWidth", {
       configurable: true,
@@ -88,7 +99,7 @@ describe("Header", () => {
     );
   });
 
-  it("uses desktop controls at desktop-width browser sizes", async () => {
+  it("uses desktop controls at desktop-width browser sizes", () => {
     Object.defineProperty(window, "innerWidth", {
       configurable: true,
       writable: true,
@@ -97,10 +108,6 @@ describe("Header", () => {
     window.dispatchEvent(new Event("resize"));
 
     renderHeader();
-
-    await waitFor(() => {
-      expect(screen.queryByRole("button", { name: "Open menu" })).toBeNull();
-    });
 
     expect(screen.queryByRole("navigation", { name: "Mobile navigation" })).toBeNull();
     expect(screen.getAllByRole("link", { name: /email me/i }).length).toBe(1);

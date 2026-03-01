@@ -10,10 +10,6 @@ import { useEffect, useRef, useState } from "react";
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hasMeasuredViewport, setHasMeasuredViewport] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(() =>
-    typeof window === "undefined" ? false : window.innerWidth >= 640,
-  );
   const { t } = useLanguage();
   const headerRef = useRef<HTMLElement>(null);
 
@@ -32,18 +28,26 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      const nextIsDesktop = window.innerWidth >= 640;
-      setIsDesktop(nextIsDesktop);
-      setHasMeasuredViewport(true);
-      if (nextIsDesktop) {
+    const mediaQuery = window.matchMedia("(min-width: 640px)");
+    const handleViewportChange = (event: MediaQueryList | MediaQueryListEvent) => {
+      if (event.matches) {
         setMenuOpen(false);
       }
     };
+    const legacyMediaQuery = mediaQuery as MediaQueryList & {
+      addListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+      removeListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+    };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    handleViewportChange(mediaQuery);
+
+    if ("addEventListener" in mediaQuery) {
+      mediaQuery.addEventListener("change", handleViewportChange);
+      return () => mediaQuery.removeEventListener("change", handleViewportChange);
+    }
+
+    legacyMediaQuery.addListener?.(handleViewportChange);
+    return () => legacyMediaQuery.removeListener?.(handleViewportChange);
   }, []);
 
   useEffect(() => {
@@ -106,31 +110,27 @@ export function Header() {
           <div className="flex items-center gap-4">
             <LanguageSwitch />
 
-            {!hasMeasuredViewport || isDesktop ? (
-              <a
-                href="#contact"
-                className="hidden rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition hover:opacity-90 sm:inline-flex"
-              >
-                {t.header.email}
-              </a>
-            ) : null}
+            <a
+              href="#contact"
+              className="hidden rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition hover:opacity-90 sm:inline-flex"
+            >
+              {t.header.email}
+            </a>
 
-            {!hasMeasuredViewport || !isDesktop ? (
-              <button
-                type="button"
-                onClick={() => setMenuOpen((current) => !current)}
-                aria-expanded={menuOpen}
-                aria-controls="mobile-navigation"
-                aria-label={menuOpen ? t.header.closeMenu : t.header.openMenu}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-panel bg-surface/20 text-slate-100 transition hover:bg-surface/35 sm:hidden"
-              >
-                {menuOpen ? <X size={18} /> : <Menu size={18} />}
-              </button>
-            ) : null}
+            <button
+              type="button"
+              onClick={() => setMenuOpen((current) => !current)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
+              aria-label={menuOpen ? t.header.closeMenu : t.header.openMenu}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-panel bg-surface/20 text-slate-100 transition hover:bg-surface/35 sm:hidden"
+            >
+              {menuOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
           </div>
         </div>
 
-        {menuOpen && !isDesktop ? (
+        {menuOpen ? (
           <nav
             id="mobile-navigation"
             aria-label="Mobile navigation"

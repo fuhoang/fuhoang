@@ -6,6 +6,8 @@ export type TranslationShape = {
     email: string;
     openMenu: string;
     closeMenu: string;
+    switchToEnglish: string;
+    switchToSpanish: string;
   };
   footer: {
     contact: string;

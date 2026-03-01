@@ -3,7 +3,7 @@
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 
 export function LanguageSwitch() {
-  const { locale, setLocale } = useLanguage();
+  const { locale, setLocale, t } = useLanguage();
   const isSpanish = locale === "es";
 
   return (
@@ -11,7 +11,7 @@ export function LanguageSwitch() {
       type="button"
       role="switch"
       aria-checked={isSpanish}
-      aria-label={isSpanish ? "Switch to English" : "Cambiar a espanol"}
+      aria-label={isSpanish ? t.header.switchToEnglish : t.header.switchToSpanish}
       onClick={() => setLocale(isSpanish ? "en" : "es")}
       className="inline-flex h-12 items-center rounded-full border border-panel bg-surface/20 p-1.5 transition"
     >

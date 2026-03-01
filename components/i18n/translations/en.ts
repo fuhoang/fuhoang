@@ -11,6 +11,8 @@ export const en: TranslationShape = {
     email: "Email me",
     openMenu: "Open menu",
     closeMenu: "Close menu",
+    switchToEnglish: "Switch to English",
+    switchToSpanish: "Switch to Spanish",
   },
   footer: {
     contact: "Contact",
