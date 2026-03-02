@@ -16,7 +16,7 @@ export function Principles() {
           {t.principles.items.map((item) => (
             <Reveal key={item.title}>
               <div className="card-surface rounded-xl border border-panel p-6">
-                <div className="text-lg font-semibold tracking-tight">
+                <div className="text-base sm:text-lg font-semibold tracking-tight">
                   {item.title}
                 </div>
                 <p className="mt-2 text-muted">{item.desc}</p>

@@ -23,7 +23,7 @@ export function Approach() {
                 <div className="text-xs uppercase tracking-[0.35em] text-muted font-mono">
                   {s.n}
                 </div>
-                <div className="mt-3 text-lg font-semibold tracking-tight">
+                <div className="mt-3 text-base sm:text-lg font-semibold tracking-tight">
                   {s.title}
                 </div>
                 <p className="mt-2 text-muted">{s.desc}</p>

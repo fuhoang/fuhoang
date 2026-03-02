@@ -21,7 +21,7 @@ export function Services() {
           {t.services.items.map((s) => (
             <Reveal key={s.title}>
               <div className="card-surface card-surface-hover rounded-xl border border-panel p-6 transition">
-                <TaggedHeading as="h3" className="text-lg font-semibold tracking-tight">
+                <TaggedHeading as="h3" className="text-base sm:text-lg font-semibold tracking-tight">
                   {s.title}
                 </TaggedHeading>
                 <p className="mt-2 text-muted">{s.desc}</p>
