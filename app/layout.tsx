@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import { siteUrl } from "@/lib/site";
 import { GalaxyBackground } from "@/components/ui/GalaxyBackground";
 import "./globals.css";
@@ -40,6 +41,7 @@ export default function RootLayout({
       <body className="relative min-h-screen overflow-x-hidden bg-ink text-slate-100 antialiased">
         <GalaxyBackground />
         <div className="relative z-10">{children}</div>
+        <Analytics />
       </body>
     </html>
   );
