@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { siteUrl } from "@/lib/site";
 import { GalaxyBackground } from "@/components/ui/GalaxyBackground";
 import "./globals.css";
@@ -42,6 +43,7 @@ export default function RootLayout({
         <GalaxyBackground />
         <div className="relative z-10">{children}</div>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
