@@ -139,22 +139,6 @@ html {
     -webkit-text-fill-color: transparent;
     opacity: 0.95;
   }
-  .tagged-heading-frame {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.18em 0.5em;
-    border: 1px solid rgba(96, 165, 250, 0.38);
-    border-radius: 0.65em;
-    background:
-      linear-gradient(135deg, rgba(34, 211, 238, 0.08), rgba(168, 85, 247, 0.1)),
-      rgba(15, 23, 42, 0.38);
-    box-shadow:
-      inset 0 0 0 1px rgba(244, 114, 182, 0.08),
-      0 0 12px rgba(34, 211, 238, 0.1),
-      0 0 16px rgba(217, 70, 239, 0.08);
-  }
   .tagged-heading-text {
     line-height: inherit;
   }

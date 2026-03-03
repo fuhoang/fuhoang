@@ -14,9 +14,7 @@ export function TaggedHeading({
       <span className="tagged-heading-bracket" aria-hidden="true">
         &lt;
       </span>
-      <span className="tagged-heading-frame">
-        <span className="tagged-heading-text">{children}</span>
-      </span>
+      <span className="tagged-heading-text">{children}</span>
       <span className="tagged-heading-bracket" aria-hidden="true">
         /&gt;
       </span>

@@ -42,14 +42,14 @@ export const es: TranslationShape = {
   services: {
     poster: "FRONTEND • BACKEND • APIs • ENTREGA",
     eyebrow: "Servicios",
-    title: "Dónde aporto valor",
+    title: "Qué hago",
     items: [
       {
-        title: "Desarrollo Full-Stack",
+        title: "Construcción Full-Stack",
         desc: "Construyo funcionalidades de producto de punta a punta, desde interfaces cuidadas hasta APIs y flujos backend fiables.",
       },
       {
-        title: "Mejora de plataformas",
+        title: "Mejoras de plataforma",
         desc: "Estabilizo sistemas heredados, reduzco errores recurrentes y mejoro el mantenimiento sin reescrituras costosas.",
       },
       {
@@ -57,7 +57,7 @@ export const es: TranslationShape = {
         desc: "Añado pruebas automatizadas y pipelines de CI para que los despliegues sean más seguros, rápidos y fiables.",
       },
       {
-        title: "Integraciones de APIs y datos",
+        title: "Integraciones API",
         desc: "Conecto servicios externos y sistemas internos con integraciones fiables pensadas para producción.",
       },
     ],
@@ -65,7 +65,7 @@ export const es: TranslationShape = {
   whyWork: {
     poster: "CLARIDAD • FIABILIDAD • ENTREGA • CALIDAD",
     eyebrow: "Por qué trabajar conmigo",
-    title: "Un ingeniero senior integrado en tu equipo",
+    title: "Soporte de ingeniería senior",
     items: [
       {
         title: "Responsabilidad senior",
@@ -88,7 +88,7 @@ export const es: TranslationShape = {
   principles: {
     poster: "INGENIERÍA • CLARIDAD • SIMPLICIDAD • DISCIPLINA",
     eyebrow: "Principios",
-    title: "Principios de ingeniería",
+    title: "Principios",
     items: [
       {
         title: "Mantener los sistemas simples",
@@ -111,8 +111,8 @@ export const es: TranslationShape = {
   work: {
     poster: "SISTEMAS • RENDIMIENTO • FIABILIDAD • RESULTADOS",
     eyebrow: "Proyectos seleccionados",
-    title: "Trabajo con impacto medible",
-    featuredTitle: "Lotto Logic — Ingeniería de plataforma SaaS (2019–2024)",
+    title: "Casos de estudio",
+    featuredTitle: "Lotto Logic — Ingeniería SaaS",
     featuredStack: "Symfony · PHP · MongoDB · Git CI · AWS",
     bullets: [
       "Añadí cobertura con PHPUnit para reducir el riesgo de regresiones en despliegues",
@@ -155,7 +155,7 @@ export const es: TranslationShape = {
   contact: {
     poster: "DESCUBRIR • DEFINIR • EJECUTAR • ENTREGAR",
     eyebrow: "Contacto",
-    title: "Inicia la conversación",
+    title: "Hablemos",
     intro:
       "Compárteme tu stack, tus objetivos y el bloqueo actual. Normalmente respondo en menos de 24 horas.",
     email: "Correo",

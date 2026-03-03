@@ -8,7 +8,7 @@ describe("Contact", () => {
     render(<Contact />);
 
     expect(
-      screen.getByRole("heading", { name: /start the conversation/i }),
+      screen.getByRole("heading", { name: /let.s talk/i }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "fuhoang84@googlemail.com" }),

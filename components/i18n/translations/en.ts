@@ -42,14 +42,14 @@ export const en: TranslationShape = {
   services: {
     poster: "FRONTEND • BACKEND • APIs • DELIVERY",
     eyebrow: "Services",
-    title: "Where I add value",
+    title: "What I do",
     items: [
       {
-        title: "Full-Stack Development",
+        title: "Full-Stack Build",
         desc: "Build product features end to end, from polished interfaces to dependable APIs and backend workflows.",
       },
       {
-        title: "Platform Improvement",
+        title: "Platform Fixes",
         desc: "Stabilise legacy systems, reduce recurring bugs, and improve maintainability without expensive rewrites.",
       },
       {
@@ -57,7 +57,7 @@ export const en: TranslationShape = {
         desc: "Add automated tests and CI pipelines that make releases safer, faster, and easier to trust.",
       },
       {
-        title: "API & Data Integrations",
+        title: "API Integrations",
         desc: "Connect third-party services and internal systems with reliable integrations built for production load.",
       },
     ],
@@ -65,7 +65,7 @@ export const en: TranslationShape = {
   whyWork: {
     poster: "CLARITY • RELIABILITY • DELIVERY • QUALITY",
     eyebrow: "Why work with me",
-    title: "A senior engineer embedded in your team",
+    title: "Senior engineering support",
     items: [
       {
         title: "Senior-level ownership",
@@ -88,7 +88,7 @@ export const en: TranslationShape = {
   principles: {
     poster: "ENGINEERING • CLARITY • SIMPLICITY • DISCIPLINE",
     eyebrow: "Principles",
-    title: "Engineering principles",
+    title: "Principles",
     items: [
       {
         title: "Keep systems simple",
@@ -111,8 +111,8 @@ export const en: TranslationShape = {
   work: {
     poster: "SYSTEMS • PERFORMANCE • RELIABILITY • OUTCOMES",
     eyebrow: "Selected work",
-    title: "Work with measurable impact",
-    featuredTitle: "Lotto Logic — SaaS Platform Engineering (2019–2024)",
+    title: "Case studies",
+    featuredTitle: "Lotto Logic — SaaS Engineering",
     featuredStack: "Symfony · PHP · MongoDB · Git CI · AWS",
     bullets: [
       "Introduced PHPUnit coverage to reduce regression risk during releases",
@@ -155,7 +155,7 @@ export const en: TranslationShape = {
   contact: {
     poster: "DISCOVERY • SCOPE • EXECUTE • SHIP",
     eyebrow: "Contact",
-    title: "Start the conversation",
+    title: "Let's talk",
     intro:
       "Send over your stack, goals, and current blockers. I usually reply within 24 hours.",
     email: "Email",
