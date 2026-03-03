@@ -8,16 +8,16 @@ describe("Services", () => {
     render(<Services />);
 
     expect(
-      screen.getByRole("heading", { name: "Where I add value" }),
+      screen.getByRole("heading", { name: "What I do" }),
     ).toBeInTheDocument();
   });
 
   it("renders all service cards", () => {
     render(<Services />);
 
-    expect(screen.getByText("Full-Stack Development")).toBeInTheDocument();
-    expect(screen.getByText("Platform Improvement")).toBeInTheDocument();
+    expect(screen.getByText("Full-Stack Build")).toBeInTheDocument();
+    expect(screen.getByText("Platform Fixes")).toBeInTheDocument();
     expect(screen.getByText("Testing & CI/CD")).toBeInTheDocument();
-    expect(screen.getByText("API & Data Integrations")).toBeInTheDocument();
+    expect(screen.getByText("API Integrations")).toBeInTheDocument();
   });
 });
