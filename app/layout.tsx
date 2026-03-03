@@ -8,12 +8,16 @@ export const metadata: Metadata = {
   description:
     "Senior Full-Stack Software Developer in London. Next.js, React, Laravel, MongoDB. Testing, CI/CD, AWS. Contract & freelance.",
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Fu Hoang — Senior Full-Stack Software Developer",
     description:
       "Production-grade web systems. Next.js, React, Laravel, MongoDB. Testing, CI/CD, AWS.",
     images: [{ url: "/opengraph-image" }],
     type: "website",
+    url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
@@ -21,6 +25,10 @@ export const metadata: Metadata = {
     description:
       "Production-grade web systems. Next.js, React, Laravel, MongoDB. Testing, CI/CD, AWS.",
     images: ["/opengraph-image"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
