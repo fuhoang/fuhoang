@@ -36,6 +36,8 @@ Examples:
 - `v1.0.0`
 - `v1.0.1`
 
+Use the full release workflow in [Release Checklist](./RELEASE.md).
+
 ## URL strategy
 
 - `/` redirects to the preferred locale
