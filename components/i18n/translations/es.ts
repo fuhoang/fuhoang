@@ -112,18 +112,23 @@ export const es: TranslationShape = {
     poster: "SISTEMAS • RENDIMIENTO • FIABILIDAD • RESULTADOS",
     eyebrow: "Proyectos seleccionados",
     title: "Casos de estudio",
-    featuredTitle: "Lotto Logic — Ingeniería SaaS",
-    featuredStack: "Symfony · PHP · MongoDB · Git CI · AWS",
-    bullets: [
-      "Añadí cobertura con PHPUnit para reducir el riesgo de regresiones en despliegues",
-      "Implementé pipelines de CI basados en Git para despliegues más fiables",
-      "Refactoricé código backend heredado en módulos más mantenibles y reutilizables",
-      "Mejoré el rendimiento del backend en un entorno SaaS en producción",
-      "Creé paquetes Composer para separar la lógica de negocio del código específico de la aplicación",
-    ],
-    enterpriseTitle: "Plataformas enterprise",
-    enterpriseBody:
-      "Entregué trabajo backend para plataformas de BeIN Sports, Coca-Cola Enterprises, DHL Resilience360 y Jamie Oliver.",
+    listCta: "Ver todos los casos",
+  },
+  caseStudiesIndex: {
+    poster: "DELIVERY • SISTEMAS • RELEASES • RESULTADOS",
+    eyebrow: "Casos de estudio",
+    title: "Casos de estudio",
+    intro:
+      "Una vista más cercana al trabajo de producto y plataforma centrado en fiabilidad, entrega y releases más seguros.",
+    readMore: "Leer caso",
+    backToHome: "Volver al inicio",
+  },
+  caseStudyPage: {
+    challenge: "Reto",
+    work: "Qué hice",
+    result: "Resultado",
+    outcomes: "Resultados clave",
+    backToStudies: "Volver a casos de estudio",
   },
   approach: {
     poster: "DESCUBRIR • DEFINIR • CONSTRUIR • ENTREGAR",
@@ -149,6 +154,33 @@ export const es: TranslationShape = {
         n: "04",
         title: "Lanzamiento y optimización",
         desc: "Lanzar con confianza y optimizar lo que más afecta a la fiabilidad y la velocidad.",
+      },
+    ],
+  },
+  faq: {
+    poster: "PREGUNTAS • ENTREGA • STACK • FORMA DE TRABAJAR",
+    eyebrow: "FAQ",
+    title: "Preguntas frecuentes",
+    items: [
+      {
+        question: "¿En qué tipo de proyectos trabajas?",
+        answer:
+          "Suelo ayudar a startups y equipos de producto con Next.js, Laravel, PHP, React, APIs, mejoras backend, testing y fiabilidad en la entrega.",
+      },
+      {
+        question: "¿Puedes trabajar dentro de un codebase existente?",
+        answer:
+          "Sí. Una gran parte de mi trabajo consiste en mejorar y entregar dentro de sistemas en producción sin forzar reescrituras innecesarias.",
+      },
+      {
+        question: "¿Ayudas con testing y CI/CD?",
+        answer:
+          "Sí. Añado con frecuencia testing automatizado, comprobaciones de release y pipelines de CI para que los despliegues sean más seguros y predecibles.",
+      },
+      {
+        question: "¿Trabajas como contractor o freelance?",
+        answer:
+          "Sí. Colaboro tanto en trabajos cortos enfocados en entrega como en trabajo más largo de producto y plataforma.",
       },
     ],
   },

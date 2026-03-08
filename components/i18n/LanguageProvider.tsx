@@ -4,14 +4,16 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
-  useSyncExternalStore,
+  useState,
   type ReactNode,
 } from "react";
 
+import { defaultLocale, type Locale } from "./config";
 import { en } from "./translations/en";
 import { es } from "./translations/es";
-import type { Locale, TranslationShape } from "./types";
+import type { TranslationShape } from "./types";
 
 const LOCALE_STORAGE_KEY = "locale";
 
@@ -28,60 +30,62 @@ type LanguageContextValue = {
 
 function readStoredLocale(): Locale {
   if (typeof window === "undefined") {
-    return "en";
+    return defaultLocale;
   }
 
   return window.localStorage.getItem(LOCALE_STORAGE_KEY) === "es" ? "es" : "en";
 }
 
-function subscribe(onStoreChange: () => void) {
-  if (typeof window === "undefined") {
-    return () => {};
+function resolveInitialLocale(initialLocale?: Locale): Locale {
+  if (initialLocale) {
+    return initialLocale;
   }
 
-  const handleStorage = (event: StorageEvent) => {
-    if (event.key === null || event.key === LOCALE_STORAGE_KEY) {
-      onStoreChange();
-    }
-  };
-  const handleLocaleChange = () => onStoreChange();
-
-  window.addEventListener("storage", handleStorage);
-  window.addEventListener("localechange", handleLocaleChange);
-
-  return () => {
-    window.removeEventListener("storage", handleStorage);
-    window.removeEventListener("localechange", handleLocaleChange);
-  };
+  return readStoredLocale();
 }
 
 const LanguageContext = createContext<LanguageContextValue>({
-  locale: "en",
+  locale: defaultLocale,
   setLocale: () => {},
   t: translations.en,
 });
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const locale: Locale = useSyncExternalStore(
-    subscribe,
-    readStoredLocale,
-    () => "en",
+export function LanguageProvider({
+  children,
+  initialLocale,
+}: {
+  children: ReactNode;
+  initialLocale?: Locale;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(() =>
+    resolveInitialLocale(initialLocale),
   );
+
+
+  useEffect(() => {
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === null || event.key === LOCALE_STORAGE_KEY) {
+        setLocaleState(readStoredLocale());
+      }
+    };
+
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, []);
+
   const setLocale = useCallback((nextLocale: Locale) => {
+    setLocaleState(nextLocale);
+
     if (typeof window === "undefined") {
       return;
     }
 
     window.localStorage.setItem(LOCALE_STORAGE_KEY, nextLocale);
-    window.dispatchEvent(new Event("localechange"));
+    document.cookie = `locale=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax`;
   }, []);
 
   const value = useMemo(
-    () => ({
-      locale,
-      setLocale,
-      t: translations[locale],
-    }),
+    () => ({ locale, setLocale, t: translations[locale] }),
     [locale, setLocale],
   );
 

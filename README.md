@@ -17,8 +17,8 @@ Open `http://localhost:3000` to view the site.
 npm run lint
 ```
 
-## Git Workflow
-
-Project Git flow and PR process:
+## Documentation
 
 - [Git Flow Guide](./docs/GIT_FLOW.md)
+- [Deployment](./docs/DEPLOYMENT.md)
+- [Production Audit](./docs/PRODUCTION_AUDIT.md)

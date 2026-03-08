@@ -1,12 +1,21 @@
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { LanguageProvider } from "@/components/i18n/LanguageProvider";
+import type { Locale } from "@/components/i18n/types";
 import { Header } from "../Header";
 
-function renderHeader() {
+const replaceMock = vi.fn();
+let pathnameMock = "/en";
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ replace: replaceMock }),
+  usePathname: () => pathnameMock,
+}));
+
+function renderHeader(initialLocale?: Locale) {
   return render(
-    <LanguageProvider>
+    <LanguageProvider initialLocale={initialLocale}>
       <Header />
     </LanguageProvider>,
   );
@@ -38,32 +47,22 @@ describe("Header", () => {
       dispatchEvent: () => false,
     })) as typeof window.matchMedia;
 
+    replaceMock.mockReset();
+    pathnameMock = "/en";
     window.localStorage.clear();
     document.body.style.overflow = "";
+    document.cookie = "locale=; Max-Age=0; path=/";
     Object.defineProperty(window, "innerWidth", {
       configurable: true,
       writable: true,
       value: 375,
     });
     window.dispatchEvent(new Event("resize"));
-  });
-
-  it("persists language selection", () => {
-    const { unmount } = renderHeader();
-
-    fireEvent.click(screen.getByRole("switch"));
-
-    expect(window.localStorage.getItem("locale")).toBe("es");
-    expect(screen.getByRole("link", { name: /servicios/i })).toBeInTheDocument();
-
-    unmount();
-    renderHeader();
-
-    expect(screen.getByRole("link", { name: /servicios/i })).toBeInTheDocument();
+    window.history.replaceState({}, "", "/en");
   });
 
   it("renders the brand logo link", () => {
-    renderHeader();
+    renderHeader("en");
 
     expect(screen.getByRole("link", { name: "Fu Hoang home" })).toHaveAttribute(
       "href",
@@ -72,7 +71,7 @@ describe("Header", () => {
   });
 
   it("opens and closes the mobile menu", () => {
-    renderHeader();
+    renderHeader("en");
 
     const toggle = screen.getByRole("button", { name: "Open menu" });
     expect(toggle).toHaveAttribute("aria-expanded", "false");
@@ -102,7 +101,7 @@ describe("Header", () => {
   });
 
   it("locks body scroll while the mobile menu is open", () => {
-    renderHeader();
+    renderHeader("en");
 
     fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
     expect(document.body.style.overflow).toBe("hidden");
@@ -112,7 +111,7 @@ describe("Header", () => {
   });
 
   it("closes the mobile menu when a mobile nav link is clicked", () => {
-    renderHeader();
+    renderHeader("en");
 
     fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
     const mobileNavigation = screen.getByRole("navigation", {
@@ -126,7 +125,7 @@ describe("Header", () => {
   });
 
   it("closes the mobile menu on outside click", () => {
-    renderHeader();
+    renderHeader("en");
 
     fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
     fireEvent.mouseDown(document.body);
@@ -145,16 +144,30 @@ describe("Header", () => {
     });
     window.dispatchEvent(new Event("resize"));
 
-    renderHeader();
+    renderHeader("en");
 
     expect(screen.queryByRole("navigation", { name: "Mobile navigation" })).toBeNull();
     expect(screen.getAllByRole("link", { name: /email me/i }).length).toBe(1);
   });
 
-  it("syncs locale changes from the storage event", async () => {
-    renderHeader();
+  it("switches locale by updating state and replacing the locale path", async () => {
+    pathnameMock = "/en";
+    window.history.replaceState({}, "", "/en#contact");
+    renderHeader("en");
 
-    expect(screen.getByRole("link", { name: /services/i })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("switch", { name: /switch to spanish/i }));
+
+    await waitFor(() => {
+      expect(screen.getByRole("switch", { name: /cambiar a ingl[eé]s/i })).toBeInTheDocument();
+    });
+
+    expect(window.localStorage.getItem("locale")).toBe("es");
+    expect(document.cookie).toContain("locale=es");
+    expect(replaceMock).toHaveBeenCalledWith("/es#contact");
+  });
+
+  it("syncs locale changes from the storage event", async () => {
+    renderHeader("en");
 
     window.localStorage.setItem("locale", "es");
     window.dispatchEvent(
