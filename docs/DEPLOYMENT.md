@@ -35,3 +35,10 @@ Examples:
 
 - `v1.0.0`
 - `v1.0.1`
+
+## URL strategy
+
+- `/` redirects to the preferred locale
+- `/en` is the default English landing route
+- `/es` is the crawlable Spanish landing route
+- locale switching keeps the current page section hash when possible

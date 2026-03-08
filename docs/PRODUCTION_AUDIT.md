@@ -31,4 +31,4 @@ Current production asset inventory:
 
 ## Remaining strategic gap
 
-Spanish content is now route-addressable through `/es`, but future SEO work should include fully localized metadata and any future case-study pages as first-class routes.
+Spanish content is route-addressable through `/es`, with locale-aware metadata and localized Open Graph imagery. Future SEO work should add dedicated case-study routes if the portfolio grows beyond the single landing page.

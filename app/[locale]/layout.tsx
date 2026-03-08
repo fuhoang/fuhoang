@@ -39,7 +39,7 @@ export async function generateMetadata({
     openGraph: {
       title: copy.title,
       description: copy.description,
-      images: [{ url: "/opengraph-image" }],
+      images: [{ url: `${canonicalPath}/opengraph-image` }],
       type: "website",
       url: canonicalPath,
       locale: resolvedLocale === "es" ? "es_ES" : "en_GB",
@@ -48,7 +48,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: copy.title,
       description: copy.description,
-      images: ["/opengraph-image"],
+      images: [`${canonicalPath}/opengraph-image`],
     },
     robots: {
       index: true,
