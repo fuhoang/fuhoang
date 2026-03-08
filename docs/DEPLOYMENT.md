@@ -42,3 +42,12 @@ Examples:
 - `/en` is the default English landing route
 - `/es` is the crawlable Spanish landing route
 - locale switching keeps the current page section hash when possible
+
+
+## Search Console
+
+After production is live and stable:
+
+1. Add the production domain to Google Search Console
+2. Submit `https://fuhoang.dev/sitemap.xml`
+3. Re-check indexing after new pages are merged

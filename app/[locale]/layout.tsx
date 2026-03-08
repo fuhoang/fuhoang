@@ -94,6 +94,21 @@ export default async function LocaleLayout({
     },
     {
       "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      name: siteName,
+      url: pageUrl,
+      description: copy.description,
+      email: `mailto:${siteEmail}`,
+      areaServed: ["GB", "Remote"],
+      sameAs: [...siteSocialLinks],
+      serviceType:
+        locale === "es"
+          ? "Desarrollo full-stack, modernización de plataformas, testing y CI/CD"
+          : "Full-stack development, platform improvement, testing, and CI/CD",
+      inLanguage: locale,
+    },
+    {
+      "@context": "https://schema.org",
       "@type": "WebSite",
       name: siteName,
       url: pageUrl,

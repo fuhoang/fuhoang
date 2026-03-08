@@ -52,18 +52,34 @@ export type TranslationShape = {
     poster: string;
     eyebrow: string;
     title: string;
-    studies: Array<{
-      title: string;
-      stack: string;
-      summary: string;
-      outcomes: string[];
-    }>;
+    listCta: string;
+  };
+  caseStudiesIndex: {
+    poster: string;
+    eyebrow: string;
+    title: string;
+    intro: string;
+    readMore: string;
+    backToHome: string;
+  };
+  caseStudyPage: {
+    challenge: string;
+    work: string;
+    result: string;
+    outcomes: string;
+    backToStudies: string;
   };
   approach: {
     poster: string;
     eyebrow: string;
     title: string;
     steps: Array<{ n: string; title: string; desc: string }>;
+  };
+  faq: {
+    poster: string;
+    eyebrow: string;
+    title: string;
+    items: Array<{ question: string; answer: string }>;
   };
   contact: {
     poster: string;

@@ -112,31 +112,23 @@ export const en: TranslationShape = {
     poster: "SYSTEMS • PERFORMANCE • RELIABILITY • OUTCOMES",
     eyebrow: "Selected work",
     title: "Case studies",
-    studies: [
-      {
-        title: "Lotto Logic — SaaS engineering",
-        stack: "Symfony · PHP · MongoDB · Git CI · AWS",
-        summary:
-          "Improved release confidence and backend maintainability inside a live SaaS product with ongoing delivery pressure.",
-        outcomes: [
-          "Introduced PHPUnit coverage around critical backend flows to lower regression risk during releases",
-          "Implemented Git-based CI pipelines so deployments were more repeatable and easier to trust",
-          "Refactored legacy backend code into smaller reusable modules to reduce maintenance friction",
-          "Improved backend performance in production while preserving delivery cadence",
-        ],
-      },
-      {
-        title: "Enterprise platform delivery",
-        stack: "PHP · APIs · Legacy modernisation · Delivery",
-        summary:
-          "Delivered backend work across media, commerce, logistics, and content platforms for established brands.",
-        outcomes: [
-          "Shipped backend changes for BeIN Sports, Coca-Cola Enterprises, DHL Resilience360, and Jamie Oliver",
-          "Worked inside established codebases where reliability, release control, and cross-team coordination mattered",
-          "Integrated platform changes without forcing disruptive rewrites or risky delivery pauses",
-        ],
-      },
-    ],
+    listCta: "View all case studies",
+  },
+  caseStudiesIndex: {
+    poster: "DELIVERY • SYSTEMS • RELEASES • OUTCOMES",
+    eyebrow: "Case studies",
+    title: "Case studies",
+    intro:
+      "A closer look at product and platform work focused on reliability, delivery, and safer releases.",
+    readMore: "Read case study",
+    backToHome: "Back to home",
+  },
+  caseStudyPage: {
+    challenge: "Challenge",
+    work: "What I did",
+    result: "Result",
+    outcomes: "Key outcomes",
+    backToStudies: "Back to case studies",
   },
   approach: {
     poster: "DISCOVERY • SCOPE • BUILD • SHIP",
@@ -162,6 +154,33 @@ export const en: TranslationShape = {
         n: "04",
         title: "Release & optimise",
         desc: "Release with confidence, then improve the parts that matter most for reliability and speed.",
+      },
+    ],
+  },
+  faq: {
+    poster: "QUESTIONS • DELIVERY • STACK • WORKING STYLE",
+    eyebrow: "FAQ",
+    title: "Common questions",
+    items: [
+      {
+        question: "What kinds of projects do you work on?",
+        answer:
+          "I usually help startups and product teams with Next.js, Laravel, PHP, React, APIs, backend improvements, testing, and delivery reliability work.",
+      },
+      {
+        question: "Can you work inside an existing codebase?",
+        answer:
+          "Yes. A large part of my work is improving and shipping inside live systems without forcing unnecessary rewrites.",
+      },
+      {
+        question: "Do you help with testing and CI/CD?",
+        answer:
+          "Yes. I regularly add automated testing, release checks, and CI pipelines to make deployment safer and more predictable.",
+      },
+      {
+        question: "Do you work contract or freelance?",
+        answer:
+          "Yes. I support short delivery-focused engagements as well as longer product and platform work.",
       },
     ],
   },
