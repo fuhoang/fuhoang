@@ -51,3 +51,14 @@ After production is live and stable:
 1. Add the production domain to Google Search Console
 2. Submit `https://fuhoang.dev/sitemap.xml`
 3. Re-check indexing after new pages are merged
+
+
+## Post-launch monitoring
+
+After each meaningful content or SEO release:
+
+1. Confirm the latest production deployment is `Ready` in Vercel
+2. Re-check `robots.txt` and `sitemap.xml`
+3. Inspect `/en` and `/es` for canonical and `hreflang` tags
+4. Inspect one English and one Spanish case-study page
+5. Check Search Console for indexing and coverage changes
