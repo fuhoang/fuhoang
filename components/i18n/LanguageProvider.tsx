@@ -11,16 +11,10 @@ import {
 } from "react";
 
 import { defaultLocale, type Locale } from "./config";
-import { en } from "./translations/en";
-import { es } from "./translations/es";
+import { getTranslation } from "./translations";
 import type { TranslationShape } from "./types";
 
 const LOCALE_STORAGE_KEY = "locale";
-
-const translations: Record<Locale, TranslationShape> = {
-  en,
-  es,
-};
 
 type LanguageContextValue = {
   locale: Locale;
@@ -37,17 +31,13 @@ function readStoredLocale(): Locale {
 }
 
 function resolveInitialLocale(initialLocale?: Locale): Locale {
-  if (initialLocale) {
-    return initialLocale;
-  }
-
-  return readStoredLocale();
+  return initialLocale ?? readStoredLocale();
 }
 
 const LanguageContext = createContext<LanguageContextValue>({
   locale: defaultLocale,
   setLocale: () => {},
-  t: translations.en,
+  t: getTranslation(defaultLocale),
 });
 
 export function LanguageProvider({
@@ -60,7 +50,6 @@ export function LanguageProvider({
   const [locale, setLocaleState] = useState<Locale>(() =>
     resolveInitialLocale(initialLocale),
   );
-
 
   useEffect(() => {
     const handleStorage = (event: StorageEvent) => {
@@ -85,7 +74,7 @@ export function LanguageProvider({
   }, []);
 
   const value = useMemo(
-    () => ({ locale, setLocale, t: translations[locale] }),
+    () => ({ locale, setLocale, t: getTranslation(locale) }),
     [locale, setLocale],
   );
 
