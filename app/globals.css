@@ -68,9 +68,11 @@ html {
     align-items: center;
     gap: 0.5rem;
     color: #eef2ff;
+    transform-origin: center;
     text-shadow:
       0 0 14px rgba(96, 165, 250, 0.28),
       0 0 18px rgba(217, 70, 239, 0.22);
+    animation: brand-logo-load-shake 650ms ease-out 180ms both;
   }
   .brand-logo-bracket {
     font-size: clamp(1rem, 1.3vw, 1.5rem);
@@ -110,6 +112,31 @@ html {
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
+  }
+  @keyframes brand-logo-load-shake {
+    0% {
+      transform: translateX(0) rotate(0deg);
+    }
+    18% {
+      transform: translateX(-1px) rotate(-4deg);
+    }
+    36% {
+      transform: translateX(2px) rotate(4deg);
+    }
+    54% {
+      transform: translateX(-2px) rotate(-3deg);
+    }
+    72% {
+      transform: translateX(1px) rotate(2deg);
+    }
+    100% {
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .brand-logo {
+      animation: none;
+    }
   }
   .tagged-heading {
     display: flex;
