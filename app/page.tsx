@@ -1,31 +1,18 @@
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { LanguageProvider } from "@/components/i18n/LanguageProvider";
+import { cookies, headers } from "next/headers";
+import { redirect } from "next/navigation";
+import {
+  defaultLocale,
+  getPreferredLocale,
+  isLocale,
+} from "@/components/i18n/config";
 
-import { Hero } from "@/components/sections/Hero";
-import { ProofStrip } from "@/components/sections/ProofStrip";
-import { Services } from "@/components/sections/Services";
-import { WhyWorkWithMe } from "@/components/sections/WhyWorkWithMe";
-import { Principles } from "@/components/sections/Principles";
-import { Work } from "@/components/sections/Work";
-import { Approach } from "@/components/sections/Approach";
-import { Contact } from "@/components/sections/Contact";
+export default async function HomeRedirect() {
+  const cookieStore = await cookies();
+  const headerStore = await headers();
+  const cookieLocale = cookieStore.get("locale")?.value;
+  const locale = isLocale(cookieLocale)
+    ? cookieLocale
+    : getPreferredLocale(headerStore.get("accept-language")) ?? defaultLocale;
 
-export default function Home() {
-  return (
-    <LanguageProvider>
-      <Header />
-      <main>
-        <Hero />
-        <ProofStrip />
-        <Services />
-        <WhyWorkWithMe />
-        <Principles />
-        <Work />
-        <Approach />
-        <Contact />
-      </main>
-      <Footer />
-    </LanguageProvider>
-  );
+  redirect(`/${locale}`);
 }

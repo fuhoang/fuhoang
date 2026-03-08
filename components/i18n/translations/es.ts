@@ -112,18 +112,31 @@ export const es: TranslationShape = {
     poster: "SISTEMAS • RENDIMIENTO • FIABILIDAD • RESULTADOS",
     eyebrow: "Proyectos seleccionados",
     title: "Casos de estudio",
-    featuredTitle: "Lotto Logic — Ingeniería SaaS",
-    featuredStack: "Symfony · PHP · MongoDB · Git CI · AWS",
-    bullets: [
-      "Añadí cobertura con PHPUnit para reducir el riesgo de regresiones en despliegues",
-      "Implementé pipelines de CI basados en Git para despliegues más fiables",
-      "Refactoricé código backend heredado en módulos más mantenibles y reutilizables",
-      "Mejoré el rendimiento del backend en un entorno SaaS en producción",
-      "Creé paquetes Composer para separar la lógica de negocio del código específico de la aplicación",
+    studies: [
+      {
+        title: "Lotto Logic — Ingeniería SaaS",
+        stack: "Symfony · PHP · MongoDB · Git CI · AWS",
+        summary:
+          "Mejoré la confianza en los despliegues y el mantenimiento del backend dentro de un producto SaaS en producción con entregas continuas.",
+        outcomes: [
+          "Añadí cobertura con PHPUnit sobre flujos backend críticos para reducir el riesgo de regresiones en cada release",
+          "Implementé pipelines de CI basados en Git para que los despliegues fueran más repetibles y fiables",
+          "Refactoricé backend heredado en módulos más reutilizables y mantenibles",
+          "Mejoré el rendimiento del backend en producción sin frenar el ritmo de entrega",
+        ],
+      },
+      {
+        title: "Entrega para plataformas enterprise",
+        stack: "PHP · APIs · Modernización de legado · Delivery",
+        summary:
+          "Entregué trabajo backend para plataformas de medios, comercio, logística y contenido en marcas consolidadas.",
+        outcomes: [
+          "Entregué cambios backend para BeIN Sports, Coca-Cola Enterprises, DHL Resilience360 y Jamie Oliver",
+          "Trabajé dentro de codebases establecidos donde la fiabilidad, el control de releases y la coordinación entre equipos importaban",
+          "Integré cambios de plataforma sin forzar reescrituras disruptivas ni pausas de entrega innecesarias",
+        ],
+      },
     ],
-    enterpriseTitle: "Plataformas enterprise",
-    enterpriseBody:
-      "Entregué trabajo backend para plataformas de BeIN Sports, Coca-Cola Enterprises, DHL Resilience360 y Jamie Oliver.",
   },
   approach: {
     poster: "DESCUBRIR • DEFINIR • CONSTRUIR • ENTREGAR",

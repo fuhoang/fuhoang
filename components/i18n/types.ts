@@ -1,4 +1,6 @@
-export type Locale = "en" | "es";
+import type { Locale } from "./config";
+
+export type { Locale };
 
 export type TranslationShape = {
   header: {
@@ -50,11 +52,12 @@ export type TranslationShape = {
     poster: string;
     eyebrow: string;
     title: string;
-    featuredTitle: string;
-    featuredStack: string;
-    bullets: string[];
-    enterpriseTitle: string;
-    enterpriseBody: string;
+    studies: Array<{
+      title: string;
+      stack: string;
+      summary: string;
+      outcomes: string[];
+    }>;
   };
   approach: {
     poster: string;

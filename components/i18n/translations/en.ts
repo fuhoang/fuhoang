@@ -112,18 +112,31 @@ export const en: TranslationShape = {
     poster: "SYSTEMS • PERFORMANCE • RELIABILITY • OUTCOMES",
     eyebrow: "Selected work",
     title: "Case studies",
-    featuredTitle: "Lotto Logic — SaaS Engineering",
-    featuredStack: "Symfony · PHP · MongoDB · Git CI · AWS",
-    bullets: [
-      "Introduced PHPUnit coverage to reduce regression risk during releases",
-      "Implemented Git-based CI pipelines for more reliable deployments",
-      "Refactored legacy backend code into maintainable, reusable modules",
-      "Improved backend performance in a live SaaS environment",
-      "Built Composer packages to separate core business logic from app-specific code",
+    studies: [
+      {
+        title: "Lotto Logic — SaaS engineering",
+        stack: "Symfony · PHP · MongoDB · Git CI · AWS",
+        summary:
+          "Improved release confidence and backend maintainability inside a live SaaS product with ongoing delivery pressure.",
+        outcomes: [
+          "Introduced PHPUnit coverage around critical backend flows to lower regression risk during releases",
+          "Implemented Git-based CI pipelines so deployments were more repeatable and easier to trust",
+          "Refactored legacy backend code into smaller reusable modules to reduce maintenance friction",
+          "Improved backend performance in production while preserving delivery cadence",
+        ],
+      },
+      {
+        title: "Enterprise platform delivery",
+        stack: "PHP · APIs · Legacy modernisation · Delivery",
+        summary:
+          "Delivered backend work across media, commerce, logistics, and content platforms for established brands.",
+        outcomes: [
+          "Shipped backend changes for BeIN Sports, Coca-Cola Enterprises, DHL Resilience360, and Jamie Oliver",
+          "Worked inside established codebases where reliability, release control, and cross-team coordination mattered",
+          "Integrated platform changes without forcing disruptive rewrites or risky delivery pauses",
+        ],
+      },
     ],
-    enterpriseTitle: "Enterprise platforms",
-    enterpriseBody:
-      "Delivered backend work across platforms for BeIN Sports, Coca-Cola Enterprises, DHL Resilience360, and Jamie Oliver.",
   },
   approach: {
     poster: "DISCOVERY • SCOPE • BUILD • SHIP",

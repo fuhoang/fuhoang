@@ -1,13 +1,20 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/lib/site";
+import { locales } from "@/components/i18n/config";
+import { getLocalizedPath, siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: siteUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
+  const lastModified = new Date();
+
+  return locales.map((locale) => ({
+    url: `${siteUrl}${getLocalizedPath(locale)}`,
+    lastModified,
+    changeFrequency: "weekly",
+    priority: locale === "en" ? 1 : 0.9,
+    alternates: {
+      languages: {
+        en: `${siteUrl}${getLocalizedPath("en")}`,
+        es: `${siteUrl}${getLocalizedPath("es")}`,
+      },
     },
-  ];
+  }));
 }

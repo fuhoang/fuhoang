@@ -1,0 +1,37 @@
+# Deployment
+
+## Vercel Production
+
+Production hosting runs on Vercel.
+
+### Required settings
+
+- Production branch: `main`
+- Environment variable: `NEXT_PUBLIC_SITE_URL=https://fuhoang.dev`
+
+### Deploy flow
+
+1. Create a `feature/*` or `fix/*` branch.
+2. Open a pull request into `main`.
+3. Wait for `test-and-build` to pass.
+4. Merge the PR.
+5. Confirm the Vercel production deployment is `Ready`.
+
+### Release checks
+
+After each production deploy, verify:
+
+- `https://fuhoang.dev/robots.txt`
+- `https://fuhoang.dev/sitemap.xml`
+- canonical URL in page source
+- Open Graph image metadata
+- JSON-LD script in page source
+
+### Versioning
+
+Use lightweight Git tags for release markers.
+
+Examples:
+
+- `v1.0.0`
+- `v1.0.1`
