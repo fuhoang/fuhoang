@@ -22,3 +22,4 @@ npm run lint
 - [Git Flow Guide](./docs/GIT_FLOW.md)
 - [Deployment](./docs/DEPLOYMENT.md)
 - [Production Audit](./docs/PRODUCTION_AUDIT.md)
+- [Release Checklist](./docs/RELEASE.md)
